@@ -18,6 +18,8 @@ class Type(resource.Resource):
     resources_key = "volume_types"
     base_path = "/types"
 
+    _query_mapping = resource.QueryParameters("is_public")
+    
     # capabilities
     allow_fetch = True
     allow_create = True
@@ -31,3 +33,5 @@ class Type(resource.Resource):
     name = resource.Body("name")
     #: A dict of extra specifications. "capabilities" is a usual key.
     extra_specs = resource.Body("extra_specs", type=dict)
+    #: a private volume-type. *Type: bool*
+    is_public = resource.Body('os-volume-type-access:is_public', type=bool)
